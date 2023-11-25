@@ -1,0 +1,35 @@
+<!-- agregar-editar-profesor.component.html -->
+
+<div class="modal fade" id="agregarEditarProfesorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ esEdicion ? 'Editar' : 'Agregar' }} Profesor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+          <form>
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" [(ngModel)]="profesor.Nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" class="form-control" id="apellido" [(ngModel)]="profesor.Apellido" name="apellido" required>
+            </div>
+            <div class="form-group">
+              <label for="genero">Género</label>
+              <input type="text" class="form-control" id="genero" [(ngModel)]="profesor.Genero" name="genero" required>
+            </div>
+          
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="guardarProfesor()">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
