@@ -1,8 +1,8 @@
 // agregar-editar-profesor.component.ts
-
-import { Component, Input, OnInit } from '@angular/core';
+import {ChangeDetectorRef , Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { Profesor1 } from '../../models/Profesor1';
+import { Profesor1,ProfesorNuevo } from '../../models/Profesor1';
+import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
   selector: 'app-agregar-editar-profesor',
@@ -10,33 +10,57 @@ import { Profesor1 } from '../../models/Profesor1';
   styleUrls: ['./agregar-editar-profesor.component.css']
 })
 export class AgregarEditarProfesorComponent implements OnInit {
-  @Input() profesor!: Profesor1;
-  esEdicion: boolean=false;
-  mostrarAgregarEditarProfesorModal: boolean = false;
-  constructor(private apiService: ApiService) { }
 
-  ngOnInit() {
-    // Verificamos si es edición o agregación
-    this.esEdicion = this.profesor.Id !== 0;
-  }
+  @Input() data:ProfesorNuevo  = new ProfesorNuevo();
+  @Input() mostrarAgregarEditarProfesorModal= true; 
+  profesor: Profesor1 = { Id: 0,Nombre: '', Apellido: '', Genero: '' };
+ 
+  @Output() cerrarModalEmitter: EventEmitter<void> = new EventEmitter<void>();
 
-  guardarProfesor() {
-    if (this.esEdicion) {
-      // Lógica para editar un profesor
-      this.apiService.updateProfesor(this.profesor).subscribe(() => {
-      });
-    } else {
-      // Lógica para agregar un profesor
-      this.apiService.insertProfesor(this.profesor).subscribe(() => {
-       
-      });
-    }
-    this.mostrarAgregarEditarProfesorModal = false;
+  
+  constructor(private apiService: ApiService, private modalService: ModalService, private cdr: ChangeDetectorRef) {
     
   }
 
-  cerrarModal() {
-    // Lógica para cerrar el modal
-    this.mostrarAgregarEditarProfesorModal = false;
+  ngOnInit() {
+    // Verificamos si es edición o agregación
+    console.log('Data received in AGREGAR PROFESOR:', this.data);
+  
+    this.profesor =  this.data.profesor;
+
+    this.data.esEdicion = this.data.profesor.Id !== 0;
+  
+    // Forzar una actualización de la vista
+    this.cdr.detectChanges();
   }
+
+  guardarProfesor(datosFormulario: any) {
+    // Establecer los datos del formulario en this.data.profesor
+    this.data.profesor.Apellido = datosFormulario.apellido ;
+    this.data.profesor.Nombre = datosFormulario.nombre ;
+    this.data.profesor.Id = datosFormulario.id ;
+    this.data.profesor.Genero = datosFormulario.genero ;
+
+    if (this.data.esEdicion) {
+      // Lógica para editar un profesor
+      this.apiService.updateProfesor(this.data.profesor).subscribe(() => {
+        this.modalService.close();
+        location.reload()
+      });
+    } else {
+      // Lógica para agregar un profesor
+      this.apiService.insertProfesor(this.data.profesor).subscribe(() => {
+        this.modalService.close();
+        location.reload()
+      });
+    }
+
+  }
+
+  cerrarModal() {
+    // Cierra el modal
+    this.modalService.close();
+    location.reload()
+  }
+  
 }

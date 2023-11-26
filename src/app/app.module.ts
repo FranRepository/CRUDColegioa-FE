@@ -8,6 +8,7 @@ import { AgregarEditarAlumnoComponent } from './shared/components/agregar-editar
 import { AgregarEditarGradosComponent } from './shared/components/agregar-editar-grados/agregar-editar-grados.component';
 import { AgregarEditarAlumnosEnGradosComponent } from './shared/components/agregar-editar-alumnos-en-grados/agregar-editar-alumnos-en-grados.component';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { Profesor1,ProfesorNuevo } from './shared/models/Profesor1';
 @NgModule({
   
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule
     HttpClientModule  ,
     FormsModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

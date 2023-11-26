@@ -1,4 +1,5 @@
 
+
 <div class="card m-2">
   <h2 class="card-header bg-primary text-white p-1 m-0">Profesores</h2>
 <!-- app.component.html -->
@@ -6,7 +7,6 @@
 
 <button class="btn btn-success" (click)="abrirAgregarEditarProfesorModal()">Agregar Profesor</button>
 
-<app-agregar-editar-profesor [profesor]="{ Id: 0, Nombre: '', Apellido: '', Genero: '' }"></app-agregar-editar-profesor>
 <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead>
@@ -23,7 +23,8 @@
           <td>{{ profesor.apellido }}</td>
           <td>{{ profesor.genero }}</td>
           <td>
-            <button class="btn btn-danger" (click)="eliminarProfesor(profesor.id)">Eliminar</button>
+            <button class="btn btn-danger" (click)="eliminarProfesor(profesor.Id)">Eliminar</button>
+            <button class="btn btn-success" (click)="abrirEditarProfesorModal(profesor)">Editar Profesor</button>
           </td>
         </tr>
       </tbody>
@@ -53,6 +54,8 @@
           <td>{{ alumno.fechaNacimiento }}</td>
           <td>
             <button class="btn btn-danger" (click)="eliminarAlumno(alumno.id)">Eliminar</button>
+      
+
           </td>
         </tr>
       </tbody>

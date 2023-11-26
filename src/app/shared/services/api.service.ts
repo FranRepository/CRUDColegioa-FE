@@ -35,11 +35,11 @@ export class ApiService {
   }
 
   insertProfesor(profesor: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}Profesor/InsertProfesor`, profesor);
+    return this.http.post<any>(`${this.baseUrl}Profesor/Insert`, profesor);
   }
 
   updateProfesor(profesor: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}Profesor/UpdateProfesor`, profesor);
+    return this.http.post<any>(`${this.baseUrl}Profesor/Update`, profesor);
   }
   deleteProfesor(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}Profesor/Delete/${id}`);
@@ -51,11 +51,11 @@ export class ApiService {
   }
 
   insertGrado(grado: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}Grado/InsertGrado`, grado);
+    return this.http.post<any>(`${this.baseUrl}Grado/Insert`, grado);
   }
 
   updateGrado(grado: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}Grado/UpdateGrado`, grado);
+    return this.http.post<any>(`${this.baseUrl}Grado/Update`, grado);
   }
 
   deleteGrado(id: number): Observable<any> {
@@ -68,11 +68,11 @@ export class ApiService {
   }
 
   insertAlumnoGrado(alumnoGrado: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}AlumnoGrado/InsertAlumnoGrado`, alumnoGrado);
+    return this.http.post<any>(`${this.baseUrl}AlumnoGrado/Insert`, alumnoGrado);
   }
 
   updateAlumnoGrado(alumnoGrado: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}AlumnoGrado/UpdateAlumnoGrado`, alumnoGrado);
+    return this.http.post<any>(`${this.baseUrl}AlumnoGrado/Update`, alumnoGrado);
   }
 
   deleteAlumnoGrado(id: number): Observable<any> {

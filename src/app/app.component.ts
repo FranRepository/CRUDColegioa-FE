@@ -1,17 +1,18 @@
 // app.component.ts
 
-import { Component, OnInit , ViewChild} from '@angular/core';
+import { Component, OnInit , AfterViewInit} from '@angular/core';
 import { ApiService } from './shared/services/api.service';
 import * as bootstrap from "bootstrap";
-import * as $ from 'jquery';
 import { AgregarEditarProfesorComponent } from '../app/shared/components/agregar-editar-profesor/agregar-editar-profesor.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { Profesor1,ProfesorNuevo } from './shared/models/Profesor1';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit  {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
@@ -19,14 +20,12 @@ export class AppComponent implements OnInit {
   grados: any[] = [];
   alumnos: any[] = [];
   alumnosGrado: any[] = [];
-  @ViewChild(AgregarEditarProfesorComponent, { static: false })
-  agregarEditarProfesorComponent!: AgregarEditarProfesorComponent;
 
 
-
-  constructor(private apiService: ApiService,private modalService: NgbModal) { 
+  constructor(private apiService: ApiService,private modalService: ModalService) { 
     
   }
+
 
 
   ngOnInit() {
@@ -93,27 +92,47 @@ export class AppComponent implements OnInit {
       });
     });
   }
- // Métodos para abrir los modales
- abrirAgregarProfesorModal() {
-  // Lógica para abrir el modal de agregar profesor
-  $('#agregarProfesorModal').modal('show');
-}
 
-abrirEditarProfesorModal(id: number) {
-  // Lógica para abrir el modal de editar profesor
 
-  $('#editarProfesorModal').modal('show');
-}
-
-profesor: any = {}; // Objeto para almacenar los datos del profesor en el formulario
-
-abrirAgregarEditarProfesorModal() {
-
-  this.modalService.open(this.agregarEditarProfesorComponent.mostrarAgregarEditarProfesorModal);
+  abrirAgregarEditarProfesorModal() {
    
-}
+    const profesor1:Profesor1={
+      Id:0,
+      Nombre:"",
+      Apellido:"",
+      Genero:""
+    };
 
 
+    const dataToSend: ProfesorNuevo = {
+      esEdicion:false,
+       mostrarAgregarEditarProfesorModal:false,
+       profesor:profesor1
+ 
+    };
+
+
+    this.modalService.open(AgregarEditarProfesorComponent, dataToSend);
+  }
+ 
+  abrirEditarProfesorModal(profesor:any) {
+   
+    const profesor1: Profesor1={ 
+      Id :profesor.id,
+     Nombre:profesor.nombre,
+     Apellido:profesor.apellido,
+      Genero:profesor.genero,
+    }
+  
+ 
+   const dataToSend: ProfesorNuevo = {
+     esEdicion: true,
+     mostrarAgregarEditarProfesorModal: true, // Cambiado a true
+     profesor: profesor1,
+   };
+ 
+   this.modalService.open(AgregarEditarProfesorComponent, dataToSend);
+   }
 
 }
 
