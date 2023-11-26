@@ -72,6 +72,7 @@ export class ApiService {
   }
 
   updateAlumnoGrado(alumnoGrado: any): Observable<any> {
+    console.log("🚀 ~ file: api.service.ts:76 ~ ApiService ~   alumnoGrado:",   alumnoGrado)
     return this.http.post<any>(`${this.baseUrl}AlumnoGrado/Update`, alumnoGrado);
   }
 

@@ -5,3 +5,10 @@ export interface Alumno1 {
     Genero: string;
     FechaNacimiento: Date | null;  
  }
+
+ export class AlumnoNuevo {
+    alumno!: Alumno1 ;
+    esEdicion!: boolean;
+    mostrarAgregarEditarAlumnoModal!: boolean;
+  }
+  

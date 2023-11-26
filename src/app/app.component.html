@@ -34,7 +34,9 @@
 <!-- Alumnos -->
 <div class="card m-2">
   <h2 class="card-header bg-primary text-white p-1 m-0">Alumnos</h2>
-  <button class="btn btn-success" data-toggle="modal" data-target="#agregarProfesorModal">Agregar Alumnos</button>
+
+  <button class="btn btn-success" (click)="abrirAgregarEditarAlumnoModal()">Agregar Alumnos</button>
+
   <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead>
@@ -54,7 +56,8 @@
           <td>{{ alumno.fechaNacimiento }}</td>
           <td>
             <button class="btn btn-danger" (click)="eliminarAlumno(alumno.id)">Eliminar</button>
-      
+            <button class="btn btn-success" (click)="abrirEditarAlumnosModal(alumno)">Editar Alumno</button>
+       
 
           </td>
         </tr>
@@ -68,7 +71,8 @@
 <!-- Grados -->
 <div class="card m-2">
   <h2 class="card-header bg-primary text-white p-1 m-0">Grados</h2>
-  <button  class="btn btn-success" data-toggle="modal" data-target="#agregarProfesorModal">Agregar Grados</button>
+  <button class="btn btn-success" (click)="abrirAgregarEditarGradoModal()">Agregar Grados</button>
+
   <div class="card-body"> 
     <table class="table table-bordered table-striped">
       <thead>
@@ -84,6 +88,8 @@
           <td>{{ grado.profesorId }}</td>
           <td>
             <button class="btn btn-danger" (click)="eliminarGrado(grado.id)">Eliminar</button>
+            <button class="btn btn-success" (click)="abrirEditarGradoModal(grado)">Editar Grados</button>
+       
           </td>
         </tr>
       </tbody>
@@ -95,7 +101,7 @@
 <!-- Alumnos en Grados -->
 <div class="card m-2">
   <h2 class="card-header bg-primary text-white p-1 m-0">Alumnos en Grados</h2>
-  <button class="btn btn-success" data-toggle="modal" data-target="#agregarProfesorModal">Agregar en Grados</button>
+  <button class="btn btn-success" (click)="abrirAgregarEditarAlumnoEnGradoModal()">Agregar Alumnos</button>
   <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead>
@@ -113,6 +119,8 @@
           <td>{{ alumnoGrado.seccion }}</td>
           <td>
             <button class="btn btn-danger" (click)="eliminarAlumnoGrado(alumnoGrado.id)">Eliminar</button>
+            <button class="btn btn-success" (click)="abrirEditarAlumnoEnGradoModal(alumnoGrado)">Editar Alumno en Grados</button>
+       
           </td>
         </tr>
       </tbody>

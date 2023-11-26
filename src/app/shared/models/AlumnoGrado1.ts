@@ -4,3 +4,10 @@ export interface AlumnoGrado1 {
     GradoId: number | null;
     Seccion: string;
   }
+
+  export class AlumnoGradoNuevo {
+    alumnoEnGrado!: AlumnoGrado1 ;
+    esEdicion!: boolean;
+    mostrarAgregarEditarAlumnoModal!: boolean;
+  }
+  

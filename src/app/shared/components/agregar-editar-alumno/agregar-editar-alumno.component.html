@@ -1,1 +1,44 @@
-<p>agregar-editar-alumno works!</p>
+<!-- agregar-editar-alumno.component.html -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'show': mostrarAgregarEditarAlumnoModal, 'd-block': mostrarAgregarEditarAlumnoModal }">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ data.esEdicion ? 'Editar' : 'Agregar' }} Alumno</h5>
+          <button type="button" class="close" (click)="cerrarModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #formularioAlumno="ngForm">
+            <div class="form-group" style="display: none;">
+              <label for="ID">ID</label>
+              <input type="text" class="form-control" style="display: none;" id="id" [(ngModel)]="alumno.Id" name="id">
+            </div>
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" [(ngModel)]="alumno.Nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="apellidos">Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" [(ngModel)]="alumno.Apellidos" name="apellidos" required>
+            </div>
+            <div class="form-group">
+              <label for="genero">Género</label>
+              <select class="form-control" id="genero" [(ngModel)]="alumno.Genero" name="genero" required>
+                <option value="H">H</option>
+                <option value="M">M</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fechaNacimiento">Fecha de Nacimiento</label>
+              <input type="date" class="form-control" id="fechaNacimiento" [(ngModel)]="alumno.FechaNacimiento" name="fechaNacimiento">
+            </div>
+  
+            <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="guardarAlumno(formularioAlumno.value)">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -4,3 +4,8 @@ export interface Grado1 {
     Nombre: string;
     ProfesorId: number | null;   
 }
+export class GradoNuevo {
+    Grado!: Grado1 ;
+    esEdicion!: boolean;
+    mostrarAgregarEditarGradosModal!: boolean;
+}
