@@ -59,6 +59,8 @@ export class AppComponent implements OnInit  {
   }
 
   eliminarProfesor(id: number) {
+    
+    console.log("🚀 ~ file: app.component.ts:63 ~ AppComponent ~ eliminarProfesor ~ id:", id)
     // Llama a tu servicio para eliminar un profesor por ID
     this.apiService.deleteProfesor(id).subscribe(() => {
       // Actualiza la lista después de la eliminación
