@@ -16,8 +16,8 @@ export class ModalService {
   ) {}
 
   open(component: any, data: any = {}): void {
-    const factory = this.componentFactoryResolver.resolveComponentFactory(component);
-    this.modalComponentRef = factory.create(this.injector);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(component);//Angular : Utiliza el ComponentFactoryResolver para resolver la fábricacion de componentes del componente que se pasa como argumento (component).
+    this.modalComponentRef = factory.create(this.injector);//Angular :: Crea una instancia del componente utilizando la fábrica de componentes
     this.appRef.attachView(this.modalComponentRef.hostView);
     document.body.appendChild(this.modalComponentRef.location.nativeElement);
 
@@ -34,13 +34,7 @@ export class ModalService {
     
   }
 
-  openAgregarEditarProfesorModal(profesorData: any): NgbModalRef {
-    const modalRef = this.modalService.open(AgregarEditarProfesorComponent, { size: 'lg' });
-    modalRef.componentInstance.profesor = profesorData.profesor;
-    modalRef.componentInstance.esEdicion = profesorData.esEdicion;
-    modalRef.componentInstance.mostrarAgregarEditarProfesorModal = profesorData.mostrarAgregarEditarProfesorModal;
-    return modalRef;
-  }
+
 
   
 }
